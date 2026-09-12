@@ -1,0 +1,1321 @@
+<!doctype html>
+
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    ```
+    <title>A Little Surprise ✨</title>
+    <meta name="description" content="A little surprise letter website." />
+
+    <style>
+      :root {
+        --bg1: #02030a;
+        --bg2: #07112b;
+        --gold: #ffe8a6;
+        --paper: #f6ead4;
+        --ink: #453426;
+        --wax: #7f101a;
+
+        --safe-top: env(safe-area-inset-top, 0px);
+        --safe-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-left: env(safe-area-inset-left, 0px);
+        --safe-right: env(safe-area-inset-right, 0px);
+      }
+
+      * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        min-height: 100%;
+      }
+
+      body {
+        font-family: Georgia, "Times New Roman", serif;
+        background: #000;
+        color: white;
+        overflow: hidden;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      /* =========================================================
+     GLOBAL SCENE
+  ========================================================= */
+
+      .scene {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        height: 100dvh;
+
+        display: grid;
+        place-items: center;
+
+        overflow: hidden;
+
+        padding: var(--safe-top) var(--safe-right) var(--safe-bottom) var(--safe-left);
+
+        background: radial-gradient(circle at 50% 45%, rgba(32, 63, 130, 0.26), transparent 34%), radial-gradient(circle at 50% 90%, rgba(63, 97, 170, 0.1), transparent 36%), linear-gradient(180deg, var(--bg1), var(--bg2) 58%, #000 100%);
+
+        transition:
+          opacity 1.2s ease,
+          visibility 1.2s ease;
+      }
+
+      /* =========================================================
+     STARS
+  ========================================================= */
+
+      .stars {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .star {
+        position: absolute;
+
+        width: clamp(1.5px, 0.28vw, 3px);
+        height: clamp(1.5px, 0.28vw, 3px);
+
+        background: #dbe8ff;
+        border-radius: 50%;
+
+        box-shadow: 0 0 10px 2px rgba(140, 190, 255, 0.55);
+
+        animation: twinkle 2.8s ease-in-out infinite;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.22;
+          transform: scale(0.8);
+        }
+
+        50% {
+          opacity: 1;
+          transform: scale(1.35);
+        }
+      }
+
+      /* =========================================================
+     FIREWORKS
+  ========================================================= */
+
+      #fireworks {
+        position: absolute;
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      /* =========================================================
+     INTRO TEXT
+  ========================================================= */
+
+      .intro-copy {
+        position: absolute;
+
+        left: 50%;
+        bottom: max(7vh, 40px);
+
+        transform: translateX(-50%);
+
+        width: min(90vw, 720px);
+
+        padding: 0 max(16px, var(--safe-left)) 0 max(16px, var(--safe-right));
+
+        text-align: center;
+
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+
+        font-size: clamp(0.62rem, 1.5vw, 0.9rem);
+
+        color: rgba(255, 255, 255, 0.82);
+
+        opacity: 0;
+
+        animation: fadeUp 1.5s ease 0.8s forwards;
+
+        z-index: 6;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translate(-50%, 18px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translate(-50%, 0);
+        }
+      }
+
+      /* =========================================================
+     BOUQUET
+  ========================================================= */
+
+      .bouquet-wrap {
+        position: absolute;
+
+        left: 50%;
+        top: 50%;
+
+        width: min(70vw, 620px);
+        height: min(82vh, 760px);
+
+        transform: translate(-50%, calc(-50% + 110vh)) scale(0.9);
+
+        display: grid;
+        place-items: center;
+
+        z-index: 3;
+
+        animation:
+          bouquetIn 2s cubic-bezier(0.22, 0.84, 0.24, 1) forwards,
+          floaty 5s ease-in-out 2.2s infinite;
+      }
+
+      .bouquet-glow {
+        position: absolute;
+
+        width: 70%;
+        height: 65%;
+
+        border-radius: 50%;
+
+        background: radial-gradient(circle, rgba(106, 176, 255, 0.35), rgba(113, 75, 255, 0.08) 42%, transparent 70%);
+
+        filter: blur(24px);
+
+        animation: pulse 3.2s ease-in-out infinite;
+      }
+
+      .bouquet {
+        position: relative;
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: contain;
+
+        filter: drop-shadow(0 10px 26px rgba(69, 139, 255, 0.28));
+
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+
+      @keyframes bouquetIn {
+        0% {
+          transform: translate(-50%, calc(-50% + 110vh)) scale(0.82);
+
+          opacity: 0;
+        }
+
+        68% {
+          transform: translate(-50%, calc(-50% - 8px)) scale(1.02);
+
+          opacity: 1;
+        }
+
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+
+          opacity: 1;
+        }
+      }
+
+      @keyframes floaty {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) translateY(0);
+        }
+
+        50% {
+          transform: translate(-50%, -50%) translateY(-10px);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.55;
+          transform: scale(0.92);
+        }
+
+        50% {
+          opacity: 0.9;
+          transform: scale(1.04);
+        }
+      }
+
+      /* =========================================================
+     FALLING PETALS
+  ========================================================= */
+
+      #petals {
+        position: absolute;
+        inset: 0;
+
+        pointer-events: none;
+
+        overflow: hidden;
+
+        z-index: 5;
+      }
+
+      .petal {
+        position: absolute;
+
+        width: 9px;
+        height: 14px;
+
+        border-radius: 70% 30% 65% 35%;
+
+        background: linear-gradient(135deg, #ffd4ea, #ff8ec6);
+
+        filter: drop-shadow(0 0 7px rgba(255, 150, 210, 0.5));
+
+        opacity: 0.75;
+
+        animation: fall linear infinite;
+
+        will-change: transform, opacity;
+      }
+
+      @keyframes fall {
+        from {
+          transform: translate3d(0, -8vh, 0) rotate(0deg);
+
+          opacity: 0;
+        }
+
+        10% {
+          opacity: 0.8;
+        }
+
+        to {
+          transform: translate3d(120px, 110vh, 0) rotate(420deg);
+
+          opacity: 0;
+        }
+      }
+
+      /* =========================================================
+     HIDDEN
+  ========================================================= */
+
+      .hidden {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+      }
+
+      /* =========================================================
+     ENVELOPE SCENE
+  ========================================================= */
+
+      #envelopeScene {
+        z-index: 10;
+
+        opacity: 0;
+        visibility: hidden;
+
+        pointer-events: none;
+
+        background: radial-gradient(circle at 50% 42%, rgba(79, 108, 184, 0.2), transparent 35%), linear-gradient(180deg, #03040b, #090f1e 68%, #020307);
+      }
+
+      #envelopeScene.show {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .envelope-card {
+        position: relative;
+
+        width: min(88vw, 720px);
+
+        display: grid;
+        place-items: center;
+
+        gap: clamp(14px, 2.5vh, 22px);
+
+        padding: 20px max(20px, var(--safe-right)) max(20px, var(--safe-bottom)) max(20px, var(--safe-left));
+
+        animation: cardIn 1.2s cubic-bezier(0.16, 0.83, 0.2, 1) forwards;
+      }
+
+      @keyframes cardIn {
+        from {
+          transform: scale(0.86) translateY(35px);
+
+          opacity: 0;
+        }
+
+        to {
+          transform: scale(1) translateY(0);
+
+          opacity: 1;
+        }
+      }
+
+      /* =========================================================
+     ENVELOPE BUTTON
+     NO GLINT / NO MOVING SHINE
+  ========================================================= */
+
+      .envelope-btn {
+        position: relative;
+
+        border: 0;
+        padding: 0;
+
+        background: transparent;
+
+        cursor: pointer;
+
+        width: min(82vw, 620px);
+
+        border-radius: 16px;
+
+        transition:
+          transform 0.25s ease,
+          filter 0.25s ease;
+
+        filter: drop-shadow(0 28px 40px rgba(0, 0, 0, 0.45));
+
+        touch-action: manipulation;
+      }
+
+      /*
+    Tidak ada efek glint di sini.
+    Hover hanya sedikit mengangkat amplop,
+    tanpa kilatan bergerak.
+  */
+
+      .envelope-btn:hover {
+        transform: translateY(-5px) scale(1.01);
+
+        filter: drop-shadow(0 30px 48px rgba(0, 0, 0, 0.55));
+      }
+
+      .envelope-btn:active {
+        transform: scale(0.985);
+      }
+
+      .envelope-btn:focus-visible {
+        outline: 2px solid var(--gold);
+
+        outline-offset: 6px;
+      }
+
+      .envelope-btn img {
+        width: 100%;
+
+        display: block;
+
+        border-radius: 12px;
+
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+
+      /* =========================================================
+     HINT
+  ========================================================= */
+
+      .hint {
+        color: rgba(255, 255, 255, 0.8);
+
+        font-size: clamp(0.78rem, 2vw, 1rem);
+
+        line-height: 1.5;
+
+        letter-spacing: clamp(0.03em, 0.5vw, 0.06em);
+
+        text-align: center;
+
+        max-width: 90vw;
+      }
+
+      .hint strong {
+        color: var(--gold);
+      }
+
+      /* =========================================================
+     LETTER SCENE
+  ========================================================= */
+
+      #letterScene {
+        z-index: 20;
+
+        opacity: 0;
+        visibility: hidden;
+
+        pointer-events: none;
+
+        background: rgba(2, 3, 10, 0.96);
+
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        display: block;
+
+        padding: max(7vh, 30px) max(20px, var(--safe-right)) max(7vh, 40px) max(20px, var(--safe-left));
+
+        -webkit-overflow-scrolling: touch;
+      }
+
+      #letterScene.show {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .letter-wrap {
+        width: min(940px, 94vw);
+
+        margin: 0 auto;
+
+        perspective: 1400px;
+      }
+
+      .letter {
+        position: relative;
+
+        background: radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.5), transparent 20%), repeating-linear-gradient(0deg, rgba(90, 60, 30, 0.03) 0 1px, transparent 1px 4px), var(--paper);
+
+        color: var(--ink);
+
+        border: 1px solid rgba(90, 60, 30, 0.18);
+
+        box-shadow: 0 35px 80px rgba(0, 0, 0, 0.45);
+
+        padding: clamp(30px, 7vw, 74px) clamp(24px, 8vw, 90px);
+
+        transform-origin: top center;
+
+        transform: rotateX(-88deg) translateY(-30px);
+
+        animation: unfold 1.35s cubic-bezier(0.16, 0.85, 0.22, 1) forwards;
+      }
+
+      @keyframes unfold {
+        to {
+          transform: rotateX(0) translateY(0);
+        }
+      }
+
+      .letter::before,
+      .letter::after {
+        content: "";
+
+        position: absolute;
+
+        width: 80px;
+        height: 80px;
+
+        opacity: 0.15;
+
+        border: 1px solid var(--ink);
+
+        pointer-events: none;
+      }
+
+      .letter::before {
+        left: 16px;
+        top: 16px;
+
+        border-right: 0;
+        border-bottom: 0;
+      }
+
+      .letter::after {
+        right: 16px;
+        bottom: 16px;
+
+        border-left: 0;
+        border-top: 0;
+      }
+
+      .small {
+        text-transform: uppercase;
+
+        letter-spacing: 0.22em;
+
+        font-size: 0.72rem;
+
+        opacity: 0.65;
+      }
+
+      h1 {
+        font-weight: 500;
+
+        font-size: clamp(2rem, 5vw, 4.2rem);
+
+        margin: 12px 0 24px;
+
+        line-height: 1.05;
+      }
+
+      .rule {
+        width: 90px;
+        height: 1px;
+
+        background: rgba(69, 52, 38, 0.35);
+
+        margin: 0 0 30px;
+      }
+
+      .letter p {
+        font-size: clamp(1rem, 1.8vw, 1.18rem);
+
+        line-height: 1.9;
+
+        margin: 0 0 18px;
+      }
+
+      .signature {
+        margin-top: 42px;
+
+        text-align: right;
+
+        font-style: italic;
+
+        font-size: 1.1rem;
+      }
+
+      .close-note {
+        margin-top: 22px;
+
+        text-align: center;
+
+        color: rgba(255, 255, 255, 0.7);
+
+        font-size: 0.85rem;
+      }
+
+      /* =========================================================
+     TABLET
+  ========================================================= */
+
+      @media (max-width: 900px) {
+        .bouquet-wrap {
+          width: min(76vw, 560px);
+          height: min(76vh, 650px);
+        }
+
+        .intro-copy {
+          bottom: 5vh;
+        }
+
+        .envelope-btn {
+          width: min(86vw, 600px);
+        }
+      }
+
+      /* =========================================================
+     MOBILE
+  ========================================================= */
+
+      @media (max-width: 600px) {
+        .scene {
+          padding: var(--safe-top) var(--safe-right) var(--safe-bottom) var(--safe-left);
+        }
+
+        .bouquet-wrap {
+          /*
+        Bouquet tetap benar-benar berada di tengah.
+        Ukuran mengikuti sisi terkecil viewport.
+      */
+          width: min(88vw, 70vh, 500px);
+
+          height: min(70vh, 88vw, 620px);
+        }
+
+        .bouquet-glow {
+          width: 80%;
+          height: 65%;
+
+          filter: blur(18px);
+        }
+
+        .intro-copy {
+          width: 92vw;
+
+          bottom: max(4vh, 28px);
+
+          font-size: clamp(0.56rem, 2.4vw, 0.72rem);
+
+          letter-spacing: 0.12em;
+        }
+
+        .petal {
+          width: 7px;
+          height: 11px;
+        }
+
+        .envelope-card {
+          width: 100vw;
+
+          padding: 20px 18px max(24px, var(--safe-bottom)) 18px;
+        }
+
+        .envelope-btn {
+          width: min(94vw, 620px);
+
+          border-radius: 12px;
+        }
+
+        .envelope-btn img {
+          border-radius: 10px;
+        }
+
+        .hint {
+          font-size: clamp(0.72rem, 3.2vw, 0.9rem);
+
+          max-width: 88vw;
+        }
+
+        #letterScene {
+          padding: max(28px, var(--safe-top)) 14px max(34px, var(--safe-bottom)) 14px;
+        }
+
+        .letter-wrap {
+          width: 100%;
+        }
+
+        .letter {
+          padding: 34px 22px 48px;
+        }
+
+        .letter::before,
+        .letter::after {
+          width: 48px;
+          height: 48px;
+        }
+
+        .letter::before {
+          left: 10px;
+          top: 10px;
+        }
+
+        .letter::after {
+          right: 10px;
+          bottom: 10px;
+        }
+
+        .small {
+          font-size: 0.62rem;
+
+          letter-spacing: 0.16em;
+        }
+
+        h1 {
+          font-size: clamp(1.8rem, 9vw, 2.7rem);
+
+          line-height: 1.08;
+
+          margin: 12px 0 22px;
+        }
+
+        .letter p {
+          font-size: clamp(0.98rem, 4.4vw, 1.08rem);
+
+          line-height: 1.8;
+
+          text-align: left;
+        }
+
+        .signature {
+          margin-top: 34px;
+
+          font-size: 1rem;
+        }
+      }
+
+      /* =========================================================
+     VERY SMALL PHONES
+  ========================================================= */
+
+      @media (max-width: 380px) {
+        .bouquet-wrap {
+          width: 88vw;
+          height: 66vh;
+        }
+
+        .intro-copy {
+          bottom: 3vh;
+        }
+
+        .envelope-btn {
+          width: 94vw;
+        }
+
+        .letter {
+          padding: 30px 20px 42px;
+        }
+
+        h1 {
+          font-size: 1.75rem;
+        }
+
+        .letter p {
+          font-size: 0.96rem;
+
+          line-height: 1.75;
+        }
+      }
+
+      /* =========================================================
+     LANDSCAPE MOBILE
+  ========================================================= */
+
+      @media (max-height: 500px) and (orientation: landscape) {
+        .bouquet-wrap {
+          width: 48vw;
+          height: 86vh;
+        }
+
+        .intro-copy {
+          bottom: 3vh;
+          font-size: 0.58rem;
+        }
+
+        .envelope-btn {
+          width: min(62vw, 520px);
+        }
+
+        .envelope-card {
+          gap: 10px;
+        }
+
+        .hint {
+          font-size: 0.72rem;
+        }
+      }
+
+      /* =========================================================
+     REDUCE MOTION
+     Untuk device/user yang mengurangi animasi.
+  ========================================================= */
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+        }
+
+        .bouquet-wrap {
+          transform: translate(-50%, -50%) scale(1);
+
+          opacity: 1;
+        }
+
+        .letter {
+          transform: rotateX(0) translateY(0);
+        }
+      }
+    </style>
+    ```
+  </head>
+
+  <body>
+    <!-- =======================================================
+         INTRO
+    ======================================================== -->
+
+    ```
+    <section id="introScene" class="scene" aria-label="Introduction">
+      <div class="stars" id="stars" aria-hidden="true"></div>
+
+      <canvas id="fireworks" aria-hidden="true"></canvas>
+
+      <div id="petals" aria-hidden="true"></div>
+
+      <!-- Bouquet CENTER -->
+      <div class="bouquet-wrap">
+        <div class="bouquet-glow"></div>
+
+        <img class="bouquet" src="assets/bouquet.png" alt="Bouquet bunga" />
+      </div>
+    </section>
+
+    <!-- =======================================================
+     ENVELOPE
+======================================================== -->
+
+    <section id="envelopeScene" class="scene" aria-label="Envelope">
+      <div class="stars" id="stars2" aria-hidden="true"></div>
+
+      <div class="envelope-card">
+        <button class="envelope-btn" id="openEnvelope" aria-label="Buka amplop">
+          <img src="assets/envelope.jpg" alt="Amplop" />
+        </button>
+
+        <div class="hint">
+          ✨
+          <strong>Tap the envelope</strong>
+          to open your little surprise ✨
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+     LETTER
+======================================================== -->
+
+    <section id="letterScene" class="scene" aria-label="Letter">
+      <div class="letter-wrap">
+        <article class="letter">
+          <div class="small">A little letter for you</div>
+
+          <h1>Congratulation for Manager Geoteknik!, Genoveva Areta Widyadhanaswasti.</h1>
+
+          <div class="rule"></div>
+
+          <p>Jumat, 11 September 2026.</p>
+
+          <p>
+            <strong> selamat atas 1/3nya, Veva! </strong>
+          </p>
+
+          <p>Maaf aku gabisa nonton langsung sidangmu, gabisa dateng buat ngucapin selamat, dan gabisa ngasih bunga seperti yang sempat kita candain waktu itu. Tapi, surat ini adalah bentuk hadiah yang ga seberapa itu.</p>
+
+          <p>Gatau apa lagi yang bisa aku ucapin, selain, kamu keren banget sih, kak!</p>
+
+          <p>
+            Bangga banget jujur, akhirnyaaaa, terlewati juga kan, walau sambil "ya tuhan, ya tuhan". Akhirnya bisa bernapas sedikit lega, terlepas dari segala bentuk hal hal yang buat kamu capek, kesel, emosi, dan lain sebagainya. Ditunggu
+            info mainnyaaaa, kapanpun itu.
+          </p>
+
+          <p>I know, masih ada 2/3, 3/3, dan dunia setelah perkuliahan, jadi jangan terlalu terlena yaa, katanya mau keliling dunia, menjelajahi setiap sudut bumi, SEMANGATTTTT!</p>
+
+          <p>Seseorang pernah berkata "Ad Maiora Natus Sum" Kita diciptakan untuk hal hal yang besar.</p>
+
+          <p>So, tetap jadi Veva yang keren ya!</p>
+
+          <p>
+            Semoga semua lelahmu, usahamu, langkah kecilmu, jatuhmu, sedihmu, tangismu, dan hari-hari panjang yang kamu lewati terbayar dengan sesuatu yang indah, yang selalu kamu inginkan. Kamu udah sampai sejauh ini, dan masih akan ada
+            banyak hal baik yang menunggu di depan.
+          </p>
+
+          <p>Semoga perjalanan berikutnya dipenuhi Kemudahan, kebahagiaan, dan lebih banyak alasan untuk tersenyum.</p>
+
+          <p>Once again, congratulations. You deserve this moment. ✨</p>
+
+          <div class="signature">I'm so proud of you!, your friend.</div>
+        </article>
+      </div>
+    </section>
+
+    <script>
+      /* =========================================================
+     ELEMENTS
+  ========================================================= */
+
+      const intro = document.getElementById("introScene");
+
+      const envelope = document.getElementById("envelopeScene");
+
+      const letter = document.getElementById("letterScene");
+
+      const openBtn = document.getElementById("openEnvelope");
+
+      /* =========================================================
+     STARS
+  ========================================================= */
+
+      function makeStars(containerId, count = 75) {
+        const container = document.getElementById(containerId);
+
+        if (!container) return;
+
+        for (let i = 0; i < count; i++) {
+          const star = document.createElement("span");
+
+          star.className = "star";
+
+          star.style.left = Math.random() * 100 + "%";
+
+          star.style.top = Math.random() * 100 + "%";
+
+          star.style.animationDelay = Math.random() * 3 + "s";
+
+          star.style.animationDuration = 2 + Math.random() * 3 + "s";
+
+          /*
+        Beberapa bintang dibuat lebih kecil
+        supaya langit terlihat lebih natural.
+      */
+          const size = 1.5 + Math.random() * 2.2;
+
+          star.style.width = size + "px";
+
+          star.style.height = size + "px";
+
+          container.appendChild(star);
+        }
+      }
+
+      makeStars("stars", 90);
+      makeStars("stars2", 70);
+
+      /* =========================================================
+     FLOATING PETALS
+  ========================================================= */
+
+      const petals = document.getElementById("petals");
+
+      for (let i = 0; i < 22; i++) {
+        const petal = document.createElement("span");
+
+        petal.className = "petal";
+
+        petal.style.left = 10 + Math.random() * 80 + "%";
+
+        petal.style.top = -10 - Math.random() * 40 + "%";
+
+        petal.style.animationDuration = 5 + Math.random() * 6 + "s";
+
+        petal.style.animationDelay = Math.random() * 6 + "s";
+
+        petal.style.transform = `rotate(${Math.random() * 180}deg)`;
+
+        /*
+      Sedikit variasi ukuran.
+    */
+        const scale = 0.7 + Math.random() * 0.8;
+
+        petal.style.scale = scale;
+
+        petals.appendChild(petal);
+      }
+
+      /* =========================================================
+     FIREWORKS CANVAS
+  ========================================================= */
+
+      const canvas = document.getElementById("fireworks");
+
+      const ctx = canvas.getContext("2d");
+
+      let W = 0;
+      let H = 0;
+
+      let particles = [];
+
+      /* =========================================================
+     CANVAS RESIZE
+  ========================================================= */
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        const width = window.innerWidth;
+
+        const height = window.innerHeight;
+
+        canvas.width = width * dpr;
+
+        canvas.height = height * dpr;
+
+        canvas.style.width = width + "px";
+
+        canvas.style.height = height + "px";
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        W = width;
+        H = height;
+      }
+
+      resize();
+
+      window.addEventListener("resize", resize, { passive: true });
+
+      /* =========================================================
+     FIREWORK BURST
+  ========================================================= */
+
+      function burst(x, y, hue, intensity = 1) {
+        /*
+      Jumlah particle diperbanyak.
+      Burst utama sekitar 100-130 particle.
+    */
+
+        const count = Math.floor((100 + Math.random() * 35) * intensity);
+
+        for (let i = 0; i < count; i++) {
+          const angle = Math.random() * Math.PI * 2;
+
+          /*
+        Variasi kecepatan supaya
+        ledakannya tidak terlihat seperti
+        lingkaran sempurna.
+      */
+
+          const speed = 1.4 + Math.random() * 5.2;
+
+          particles.push({
+            x,
+            y,
+
+            vx: Math.cos(angle) * speed,
+
+            vy: Math.sin(angle) * speed,
+
+            life: 55 + Math.random() * 45,
+
+            max: 100,
+
+            hue: hue + (Math.random() * 20 - 10),
+
+            size: 1 + Math.random() * 1.8,
+          });
+        }
+      }
+
+      /* =========================================================
+     SMALL SECONDARY BURST
+  ========================================================= */
+
+      function miniBurst(x, y, hue) {
+        const count = 35;
+
+        for (let i = 0; i < count; i++) {
+          const angle = Math.random() * Math.PI * 2;
+
+          const speed = 0.8 + Math.random() * 2.4;
+
+          particles.push({
+            x,
+            y,
+
+            vx: Math.cos(angle) * speed,
+
+            vy: Math.sin(angle) * speed,
+
+            life: 35 + Math.random() * 25,
+
+            max: 60,
+
+            hue: hue + (Math.random() * 25 - 12),
+
+            size: 0.7 + Math.random() * 1.2,
+          });
+        }
+      }
+
+      /* =========================================================
+     ANIMATE FIREWORKS
+  ========================================================= */
+
+      function animateFireworks() {
+        ctx.clearRect(0, 0, W, H);
+
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+
+          p.x += p.vx;
+          p.y += p.vy;
+
+          /*
+        Gravity.
+      */
+          p.vy += 0.035;
+
+          /*
+        Air resistance.
+      */
+          p.vx *= 0.995;
+          p.vy *= 0.995;
+
+          p.life--;
+
+          const alpha = Math.max(0, p.life / p.max);
+
+          ctx.beginPath();
+
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+
+          ctx.fillStyle = `hsla(
+          ${p.hue},
+          100%,
+          80%,
+          ${alpha}
+        )`;
+
+          ctx.shadowBlur = 12;
+
+          ctx.shadowColor = `hsla(
+          ${p.hue},
+          100%,
+          70%,
+          ${alpha}
+        )`;
+
+          ctx.fill();
+
+          ctx.shadowBlur = 0;
+
+          if (p.life <= 0) {
+            particles.splice(i, 1);
+          }
+        }
+
+        requestAnimationFrame(animateFireworks);
+      }
+
+      animateFireworks();
+
+      /* =========================================================
+     FIREWORK SEQUENCE
+     Lebih banyak burst
+  ========================================================= */
+
+      const fwSequence = [
+        /* kiri atas */
+        [0.16, 0.23, 210, 500, 1.0],
+
+        /* kanan atas */
+        [0.82, 0.22, 42, 800, 1.0],
+
+        /* tengah atas */
+        [0.5, 0.17, 285, 1100, 1.15],
+
+        /* kiri tengah */
+        [0.29, 0.36, 330, 1400, 0.95],
+
+        /* kanan tengah */
+        [0.72, 0.39, 195, 1700, 1.0],
+
+        /* sangat kiri */
+        [0.08, 0.48, 260, 2050, 0.8],
+
+        /* sangat kanan */
+        [0.91, 0.45, 55, 2300, 0.8],
+
+        /* tengah */
+        [0.52, 0.32, 315, 2550, 1.15],
+
+        /* kiri bawah */
+        [0.24, 0.52, 185, 2900, 0.8],
+
+        /* kanan bawah */
+        [0.78, 0.53, 340, 3150, 0.8],
+
+        /* final kiri */
+        [0.34, 0.25, 45, 3500, 1.15],
+
+        /* final kanan */
+        [0.66, 0.27, 220, 3700, 1.15],
+
+        /* final center */
+        [0.5, 0.23, 285, 4050, 1.25],
+      ];
+
+      fwSequence.forEach(([x, y, hue, delay, intensity]) => {
+        setTimeout(() => {
+          burst(W * x, H * y, hue, intensity);
+        }, delay);
+      });
+
+      /* =========================================================
+     RANDOM EXTRA FIREWORKS
+     Membuat langit lebih hidup
+  ========================================================= */
+
+      const randomFireworkInterval = setInterval(() => {
+        /*
+        Hentikan penambahan fireworks
+        ketika intro sudah tidak terlihat.
+      */
+
+        if (intro.classList.contains("hidden")) {
+          clearInterval(randomFireworkInterval);
+
+          return;
+        }
+
+        const x = W * (0.12 + Math.random() * 0.76);
+
+        const y = H * (0.13 + Math.random() * 0.42);
+
+        const hue = Math.floor(Math.random() * 360);
+
+        burst(x, y, hue, 0.55);
+
+        /*
+        Kadang-kadang tambahkan
+        burst kecil di dekatnya.
+      */
+
+        if (Math.random() > 0.55) {
+          setTimeout(() => {
+            miniBurst(
+              x + (Math.random() * 80 - 40),
+
+              y + (Math.random() * 60 - 30),
+
+              hue + 25,
+            );
+          }, 180);
+        }
+      }, 850);
+
+      /* =========================================================
+     TRANSITION TO ENVELOPE
+  ========================================================= */
+
+      setTimeout(() => {
+        intro.classList.add("hidden");
+
+        envelope.classList.add("show");
+      }, 6400);
+
+      /* =========================================================
+     OPEN ENVELOPE
+  ========================================================= */
+
+      openBtn.addEventListener("click", () => {
+        envelope.classList.remove("show");
+
+        setTimeout(() => {
+          letter.classList.add("show");
+
+          /*
+          Pastikan surat dimulai
+          dari posisi paling atas.
+        */
+
+          letter.scrollTop = 0;
+        }, 450);
+      });
+    </script>
+    ```
+  </body>
+</html>
